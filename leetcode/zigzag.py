@@ -9,25 +9,27 @@ class Solution(object):
         """
         data = s
         fchar = []
-        njump = 0
-        while njump < len(data):
-            fchar.append(data[njump])
-            njump = njump + 2*(numRows-2) + 2   
-        print ''.join(fchar) 
-     
-        schar = [] 
-        njump = 1
-        while njump < len(data):
-            schar.append(data[njump])
-            njump = njump + 2*(numRows-3) + 2  
-        print ''.join(schar)
+        mainarr = []
+        if numRows == 1:
+            return data
+        for row in range(numRows):
+            njump = row            
+            print njump
+            temparray = []
+            if row > 0 and row < (numRows-1):
+                mfactor = 3 
+            else:
+                mfactor = 2
+            while njump < len(data):
+                temparray.append(data[njump])
+                njump = njump + 2*(numRows-mfactor) + 2
+                print "here njump %s"%njump
+                if not njump:
+                    break 
+            print temparray 
+            mainarr.append(''.join(temparray))
+        return ''.join(mainarr)
 
-        lchar = [] 
-        njump = 2
-        while (njump > 0) and (njump < len(data)):
-            lchar.append(data[njump])
-            njump = njump + 2*(numRows-2) + 2
-        print ''.join(lchar)
 
 sol = Solution()
-sol.convert("arovit", 3) 
+print sol.convert("ABCDE", 4)
