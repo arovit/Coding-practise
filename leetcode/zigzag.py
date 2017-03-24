@@ -8,28 +8,30 @@ class Solution(object):
         :rtype: str
         """
         data = s
-        fchar = []
-        mainarr = []
         if numRows == 1:
             return data
-        for row in range(numRows):
-            njump = row            
-            print njump
-            temparray = []
-            if row > 0 and row < (numRows-1):
-                mfactor = 3 
-            else:
-                mfactor = 2
-            while njump < len(data):
-                temparray.append(data[njump])
-                njump = njump + 2*(numRows-mfactor) + 2
-                print "here njump %s"%njump
-                if not njump:
-                    break 
-            print temparray 
-            mainarr.append(''.join(temparray))
-        return ''.join(mainarr)
-
-
+        import math
+        strlen = len(data)
+        blocklen = (numRows - 2)*2 + 2
+        finalStr = []
+        numblocks = int(math.ceil(float(strlen)/blocklen))
+        for rownum in range(numRows):
+            findex1 = findex2 = ''
+            for bindex in range(numblocks):     
+                if (rownum == 0):
+                    findex1 = bindex * blocklen
+                    #print findex1, data[findex1]
+                elif (rownum == (numRows - 1)):  
+                    findex1 = (rownum) + (bindex)* blocklen
+                    #print findex1
+                else:
+                    findex1 = (bindex * blocklen) + (rownum)
+                    findex2 = findex1 + ((numRows-1)-(rownum+1)) * 2 +2 
+                if findex1 != '' and findex1 < len(data):
+                    finalStr.append(data[findex1])
+                if findex2 != '' and findex2 < len(data):
+                    finalStr.append(data[findex2])
+                findex1 = findex2 = '' 
+        return ''.join(finalStr)
 sol = Solution()
-print sol.convert("ABCDE", 4)
+print sol.convert("abcderfg", 2)
