@@ -20,7 +20,7 @@ class Solution(object):
             if i in NHash:
                 Integral.append(NHash[i]) 
             else: 
-                if i in ['-','+'] and sign_found:
+                if i in ['-','+'] and (not sign_found):
                     if len(Integral) > 0:
                         break
                     else:
@@ -32,6 +32,7 @@ class Solution(object):
                 else:
                     Integral = [0]
                     break 
+        print Integral
         n = len(Integral)
         sum = 0
         import math
