@@ -30,7 +30,8 @@ class Solution(object):
                             mul = 1 
                         sign_found = True
                 else:
-                    Integral = [0]
+                    if not Integral:
+                        Integral = [0]
                     break 
         print Integral
         n = len(Integral)
