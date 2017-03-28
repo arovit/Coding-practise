@@ -11,6 +11,10 @@ class EmptyStackException(Exception):
     """ Exception for emptyStack """
     pass
 
+class IndexOutOfRange(Exception):
+    """ Index out of range expression """
+    pass
+
 class LStack(Stack):
     """ 'Limited stack' derived from stack"""
     def __init__(self, limit):
@@ -34,6 +38,23 @@ class LStack(Stack):
             self.count -= 1
             return ele
 
+    def popAt(self, pos):
+        """Pop at positon """
+        if pos == (self.count-1):
+            self.pop() 
+        else:
+            i = self.count -1
+            node = self.top
+            while True:
+                if i == pos:
+                    data = node.next.data
+                    node.next = node.next.next  
+                    self.count -= 1
+                    break
+                else:
+                    i = i - 1
+                    node = node.next 
+
     def __str__(self):
         return "%s ===> %s"%(self.top, self.next)
 
@@ -42,6 +63,7 @@ class StackMaster(object):  ##  new style classes - 'type' same as 'class'
     def __init__(self, stack_limit):
         self.stack_size = stack_limit 
         self.top_stack = None
+        self.start_stack = None
  
     def addItem(self, data):
         node = Node(data)
@@ -63,6 +85,7 @@ class StackMaster(object):  ##  new style classes - 'type' same as 'class'
             newstack = LStack(self.stack_size)
             self.pushItemToStack(newstack, node)
             self.top_stack = newstack
+            self.start_stack = self.top_stack
 
     def pop(self):
         if not self.top_stack:
@@ -76,7 +99,19 @@ class StackMaster(object):  ##  new style classes - 'type' same as 'class'
     def printS(self):
         print self.top_stack 
 
-
+   
+    def searchIndex(self, index, min, max, stack):
+        if not stack:
+            raise IndexOutOfRange
+        if min <= index <= max:
+            pos = index - min
+            return stack.popAt(pos)
+        else:
+            return self.searchIndex(index, max+1, max+self.stack_size-1, stack.next)
+              
+    def popAtIndex(self, index):
+        return self.searchIndex(index, 0, 0+self.stack_size-1, self.top_stack)
+        
 sm = StackMaster(2)
 sm.addItem(3)
 sm.addItem(4)
