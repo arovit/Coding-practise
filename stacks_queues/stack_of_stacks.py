@@ -40,10 +40,11 @@ class LStack(Stack):
 
     def popAt(self, pos):
         """Pop at positon """
+        #print "pos %s"%pos
         if pos == (self.count-1):
             self.pop() 
         else:
-            i = self.count -1
+            i = self.count -2
             node = self.top
             while True:
                 if i == pos:
@@ -54,6 +55,7 @@ class LStack(Stack):
                 else:
                     i = i - 1
                     node = node.next 
+        return data
 
     def __str__(self):
         return "%s ===> %s"%(self.top, self.next)
@@ -97,17 +99,17 @@ class StackMaster(object):  ##  new style classes - 'type' same as 'class'
             return self.pop()
     
     def printS(self):
-        print self.top_stack 
-
+        print "SOS: %s"%self.top_stack 
    
     def searchIndex(self, index, min, max, stack):
+        #print "%s %s %s"%(index, min, max) 
         if not stack:
             raise IndexOutOfRange
         if min <= index <= max:
             pos = index - min
             return stack.popAt(pos)
         else:
-            return self.searchIndex(index, max+1, max+self.stack_size-1, stack.next)
+            return self.searchIndex(index, max+1, max+self.stack_size, stack.next)
               
     def popAtIndex(self, index):
         return self.searchIndex(index, 0, 0+self.stack_size-1, self.top_stack)
@@ -116,7 +118,10 @@ sm = StackMaster(2)
 sm.addItem(3)
 sm.addItem(4)
 sm.addItem(5)
+sm.addItem(7)
+sm.addItem(6)
+sm.addItem(9)
 sm.printS()
-print sm.pop().data
-print sm.pop().data
-print sm.pop().data
+index = 4
+retd = sm.popAtIndex(4)
+print "Index: %s  Value : %s"%(index, retd) 
