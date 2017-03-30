@@ -10,7 +10,6 @@ class Node(object):
         node = Node(data)
         self.left = node 
         return self.left
-        
 
     def addright(self, data):
         node = Node(data)
@@ -35,7 +34,8 @@ def post_order(node):
         post_order(node.left)       
         post_order(node.right)       
         print node.data
-        
+
+"""        
 n = Node(10)
 l1 = n.addleft(2)
 r1 = n.addright(20)
@@ -47,3 +47,4 @@ print "Pre order"
 pre_order(n)
 print "Post order"
 post_order(n)
+"""
