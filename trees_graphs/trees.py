@@ -16,6 +16,12 @@ class Node(object):
         self.right = node 
         return self.right
 
+    def __str__(self, level=0):
+        ret = "-"*level+repr(self.data)+"\n"
+        for child in [self.left, self.right]:
+            if child:
+                ret += child.__str__(level+1)
+        return ret
 
 def in_order(node):
     if node:
