@@ -27,7 +27,7 @@ def parent_until_greator(node, val):
     else:
         return parent_until_greator(node.parent, val)   
 
-a = trees.Node(50)
+print a = trees.Node(50)
 
 b = a.addleft(48)
 i = a.addright(52)
