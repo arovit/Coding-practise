@@ -1,12 +1,14 @@
 #!/usr/bin/python
 
+import trees
 
 def get_successor(node):
     """ Get successor of a node in binary search tree """
     if node.right:
-        lnode = leftmost(node.right)
+        snode = leftmost(node.right)
     else:
-        pnode = parent_until_greator(node, node.data)
+        snode = parent_until_greator(node, node.data)
+    return snode.data
          
 
 def leftmost(node):
@@ -24,3 +26,24 @@ def parent_until_greator(node, val):
         return node
     else:
         return parent_until_greator(node.parent, val)   
+
+a = trees.Node(50)
+
+b = a.addleft(48)
+i = a.addright(52)
+
+c = b.addleft(25)
+
+d = c.addleft(10)
+f = c.addright(30)
+
+e = d.addleft(5)
+
+g = f.addleft(28)
+h = f.addright(32)
+
+j = i.addleft(51)
+k = i.addright(54)
+
+
+print get_successor(c)

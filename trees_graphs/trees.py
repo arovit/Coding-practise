@@ -5,15 +5,18 @@ class Node(object):
         self.data = data
         self.left = None
         self.right = None 
+        self.parent = None  ## may or may not be true
         
     def addleft(self, data):
         node = Node(data)
         self.left = node 
+        node.parent = self
         return self.left
 
     def addright(self, data):
         node = Node(data)
         self.right = node 
+        node.parent = self
         return self.right
 
     def __str__(self, level=0):
