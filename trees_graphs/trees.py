@@ -5,18 +5,26 @@ class Node(object):
         self.data = data
         self.left = None
         self.right = None 
+        self.size = 1
         self.parent = None  ## may or may not be true
-        
+      
     def addleft(self, data):
         node = Node(data)
         self.left = node 
         node.parent = self
+        self.increase_size(node)
         return self.left
 
+    def increase_size(self, node):
+        while node.parent:
+            node.parent.size += 1
+            node = node.parent 
+             
     def addright(self, data):
         node = Node(data)
         self.right = node 
         node.parent = self
+        self.increase_size(node)
         return self.right
 
     def __str__(self, level=0):
