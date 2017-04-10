@@ -9,46 +9,22 @@ class Solution(object):
         :type p: str
         :rtype: int
         """
-        self.resultSubString = []
-        lasts = 0
+        self.resultSubString = {}
+        lc = 0
+        total = 0
+        pc = None
         for index, val in enumerate(p):
-            if index == len(p) -1 :
-                ele = p[lasts:index+1]
-                if not ele in self.resultSubString: 
-                    self.resultSubString.append(ele)
-                break
-            lefto =  ord(p[index]) + 1
-            righto =  ord(p[index+1]) 
-            if lefto == 123: lefto = 97
-            if lefto != righto:
-                ele = p[lasts:index+1]
-                if not ele in self.resultSubString:
-                    self.resultSubString.append(ele)
-                lasts = index + 1
-        newlist = self.checkArray(self.resultSubString)
-        print newlist
-        sum = 0
-        #for j in self.resultSubString:
-        #    sum = sum + self.factorial(len(j))
-        #print sum 
-
-    def checkArray(self, array):
-        newlist = []
-        for i in range(len(array)-1):
-            for j in range(len(array)):
-                if ((array[i] in array[j]) or (array[j] in array[i])):
-                    newlist.append(array[i])
-                    break  
+            if pc and ((ord(pc) == ord(p[index])-1) or (ord(pc) == 122 and ord(p[index]) == 97)):
+                lc += 1 
             else:
-               newlist.append(array[i]) 
-        return newlist
+                lc = 1
+            self.resultSubString[p[index]] = max(self.resultSubString.get(p[index], 1), lc)
+            pc = p[index]
+        for _, val in self.resultSubString.items():
+            total += val 
 
-    def factorial(self, n):
-        if n == 0:
-            return 1
-        else:
-            return n * self.factorial(n-1)   
+        return total 
 
 solver = Solution()
 estr = raw_input("Enter string").strip()
-solver.findSubstringInWraproundString(estr)
+print solver.findSubstringInWraproundString(estr)
