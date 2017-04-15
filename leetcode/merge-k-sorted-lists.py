@@ -1,24 +1,17 @@
 #!/usr/bin/python
 
-# Definition for singly-linked list.
-class ListNode(object):
-     def __init__(self, x):
-         self.val = x
-         self.next = None
-
 class Solution(object):
     def mergeKLists(self, lists):
         """
         :type lists: List[ListNode]
         :rtype: ListNode
         """
+        if len(lists) == 0:
+            return []
+        elif len(lists) == 1:
+            return lists[0]
         for i in range(0, len(lists)-1):
             head = self.merge2List(lists[i], lists[i+1])
-            print head
-            node = head
-            while node:
-                print node.val
-                node = node.next 
             lists[i+1] = head
         return lists[-1]
 
@@ -39,9 +32,11 @@ class Solution(object):
                 prev = node1
                 node1 = node1.next
         if node2:
-            prev.next = node2
-        return head1   
-        
+            if prev:
+                prev.next = node2
+            else:
+                head1 = node2
+        return head1
 
 head1 = ListNode(1)
 head1.next = ListNode(10)
