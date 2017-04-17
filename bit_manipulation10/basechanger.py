@@ -22,7 +22,7 @@ class ToBinary(Converter):
             stack_rem.append(rem)
             num = num/2 
         return "".join(stack_rem[::-1]) 
-
+    
 
 bin = ToBinary(10, 2)
 print bin.change_base(5)
