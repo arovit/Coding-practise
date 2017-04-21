@@ -19,3 +19,6 @@ def permutationunique(strn):
                 new_result.append(strn[i]+st)
     return new_result
 
+
+strn = raw_input("Enter a string ").strip()
+print permutationunique(strn)
