@@ -3,31 +3,33 @@
 import copy
 
 def solve(board):
-    newboard = copy.deepcopy(board)
+    newboard = board
     returndata = get_data(newboard)
     if returndata == False:
         return False
     else:
         row_hash, col_hash, quad_hash = returndata[0], returndata[1], returndata[2]
-    #print newboard
     if boardisfull(newboard):
         return True
     sorted_rows = sorted(row_hash.items(), key=lambda x:len(x[1]))
     sorted_cols = sorted(col_hash.items(), key=lambda x:len(x[1]))
     sorted_quads = sorted(quad_hash.items(), key=lambda x:len(x[1]))
+    found = False
     for i in sorted_rows:
         for j in sorted_cols:
             x = i[0]
             y = j[0]
-            found = 0
             qrow, qcol = get_quad(x, y)
             if newboard[x][y] == ".":
+                found = True
                 for num in range(1, 10):
-                    if not ((num in row_hash[x]) or (num in col_hash[y]) or (num in quad_hash[(qrow,qcol)])):
-                        newboard[x][y] = num 
-                        if solve(newboard):
-                            return True
-                        newboard[x][y] = "."
+                    newboard[x][y] = num 
+                    if solve(newboard):
+                        return True
+                    newboard[x][y] = "."
+                return False
+    if not found:
+        return True
     return False             
                              
 def boardisfull(board):
