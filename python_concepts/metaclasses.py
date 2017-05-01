@@ -58,3 +58,24 @@ class MySecondclass(object):
     def __init__(self):
         print "initializing my second class object"
 
+
+
+from abc import ABCMeta, abstractmethod
+
+
+class UserAbstract(object):
+    """ User defined abstract class """
+    __metaclass__ = ABCMeta
+   
+    @abstractmethod
+    def implementthis():
+        """ to be implemented """ 
+
+
+class InheritUserABS(UserAbstract):
+    def implementthis():
+        pass
+
+
+InheritUserABS()
+
