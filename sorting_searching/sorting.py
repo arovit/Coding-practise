@@ -20,7 +20,7 @@ def bubble_sort(slist):
             if j < len(slist)-1:
                 if slist[j] > slist[j+1]:
                     slist[j], slist[j+1] = slist[j+1], slist[j]
-    print slist
+    #print slist
 
 
 @timeit
@@ -30,7 +30,7 @@ def selection_sort(slist):
         for j in range(i+1, len(slist)):
             if slist[j] < slist[i]:
                 slist[i], slist[j] = slist[j], slist[i]
-    print slist
+    #print slist
 
 @timeit
 def insertion_sort(slist):
@@ -39,12 +39,49 @@ def insertion_sort(slist):
         for j in range(0,i):
             if slist[j] > slist[i]:
                 slist.insert(j, slist[i])
-                del slist[i]
-    print slist
+                del slist[i+1]
+    #print slist
 
 
-#slist = [1,2,3,4,5,6,7,8,9]*500
-#bubble_sort(slist)
-slist = [21,1,18,12,9,7,71,81,9]*1
-print slist
-insertion_sort(slist)
+@timeit
+def merge_sort_wrapper(slist):
+    """ Wrapper for merge sort """
+    #print merge_sort(slist) 
+
+def merge_sort(slist):
+    """ Merge sort """
+    if not slist:
+        return []
+    elif len(slist) == 1: 
+        return slist
+    else:
+        middle = len(slist)//2 
+        leftarray = merge_sort(slist[:middle])
+        rightarray = merge_sort(slist[middle:])
+        mergedarray = mergetwoarray(leftarray, rightarray) 
+        return mergedarray
+ 
+def mergetwoarray(larray, rarray):
+    newarray = []
+    i = 0
+    j = 0 
+    while (i < len(larray)) and (j < len(rarray)):
+        print larray[i] < rarray[j]
+        if larray[i] < rarray[j]:
+            newarray.append(larray[i])
+            i += 1
+        elif larray[i] >= rarray[j]:
+            newarray.append(rarray[j])
+            j += 1 
+    if i == len(larray):
+        newarray.extend(rarray[j:]) 
+    elif j == len(rarray):
+        newarray.extend(larray[i:]) 
+    return newarray
+
+slist = [9,2,3,4,6,1,8,9,32,12,34,7,55,3]*500
+bubble_sort(slist)
+slist = [9,2,3,4,6,1,8,9,32,12,34,7,55,3]*500
+insertion_sort(slist) 
+slist = [9,2,3,4,6,1,8,9,32,12,34,7,55,3]*500
+merge_sort_wrapper(slist)
