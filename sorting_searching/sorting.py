@@ -79,6 +79,13 @@ def mergetwoarray(larray, rarray):
         newarray.extend(larray[i:]) 
     return newarray
 
+
+def quicksort #TODO
+
+
+
+
+
 slist = [9,2,3,4,6,1,8,9,32,12,34,7,55,3]*500
 bubble_sort(slist)
 slist = [9,2,3,4,6,1,8,9,32,12,34,7,55,3]*500
