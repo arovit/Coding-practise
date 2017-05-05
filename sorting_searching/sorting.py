@@ -80,15 +80,33 @@ def mergetwoarray(larray, rarray):
     return newarray
 
 
-def quicksort #TODO
+def quicksort(array, lo, hi): 
+    if lo < hi:
+        p = partition_sort(array, lo, hi)
+        quicksort(array, lo, p-1)
+        quicksort(array, p+1, hi)
 
-
-
-
-
+def partition_sort(array, lo, hi):
+    pivot = array[lo]
+    i = lo + 1
+    j = hi 
+    while True:
+        while i <= j and array[i] <= pivot:
+            i = i+1
+        while i <=j and array[j] >= pivot:
+            j = j-1
+        if  j < i:
+            break
+        else:
+            array[i], array[j] = array[j], array[j]
+    array[lo], array[j] = array[j], array[lo]    
+    return j
+ 
 slist = [9,2,3,4,6,1,8,9,32,12,34,7,55,3]*500
 bubble_sort(slist)
 slist = [9,2,3,4,6,1,8,9,32,12,34,7,55,3]*500
 insertion_sort(slist) 
 slist = [9,2,3,4,6,1,8,9,32,12,34,7,55,3]*500
 merge_sort_wrapper(slist)
+slist = [9,2,3,4,6,1,8,9,32,12,34,7,55,3]*500
+quicksort(slist, 0, len(slist)-1)
