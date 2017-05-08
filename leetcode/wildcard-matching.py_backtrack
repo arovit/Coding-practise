@@ -1,0 +1,43 @@
+#!/usr/bin/python
+
+class Solution(object):
+    def isMatch(self, s, p):
+        """
+        :type s: str
+        :type p: str
+        :rtype: bool
+        """
+        import re
+        p = re.sub('\*+','*',p)
+        return self.isCleanMatch(s, p)
+ 
+    def isCleanMatch(self, s, p):
+        if not s and not p:  ## if both are none
+            return True
+        elif s and not p:
+            return False 
+        elif p and not s:
+            for i in p:
+                if i != '*':
+                    return False
+            return True  
+        if p[0] == "?":
+            return self.isCleanMatch(s[1:], p[1:])  ## Match anything - go check next
+        elif p[0] == "*":
+            i = 0
+            while i <= len(s):
+                if self.isCleanMatch(s[i:], p[1:]):
+                    return True
+                else: 
+                    i += 1
+            return False
+        else: 
+            if p[0] == s[0]:
+                return self.isCleanMatch(s[1:], p[1:]) 
+            else:
+                return False 
+
+sol = Solution()    
+s = "babbbbaabababaabbababaababaabbaabababbaaababbababaaaaaabbabaaaabababbabbababbbaaaababbbabbbbbbbbbbaabbb"
+p = "b**bb**a**bba*b**a*bbb**aba***babbb*aa****aabb*bbb***a"
+print sol.isMatch(s,p)
