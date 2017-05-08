@@ -59,6 +59,7 @@ class MySecondclass(object):
         print "initializing my second class object"
 
 
+obj = MySecondclass()
 
 from abc import ABCMeta, abstractmethod
 
@@ -76,6 +77,7 @@ class InheritUserABS(UserAbstract):
     def implementthis():
         pass
 
-
+print type(UserAbstract)
+print UserAbstract
+UserAbstract()
 InheritUserABS()
-
