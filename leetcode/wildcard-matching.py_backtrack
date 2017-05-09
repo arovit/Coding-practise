@@ -38,6 +38,7 @@ class Solution(object):
                 return False 
 
 sol = Solution()    
-s = "babbbbaabababaabbababaababaabbaabababbaaababbababaaaaaabbabaaaabababbabbababbbaaaababbbabbbbbbbbbbaabbb"
-p = "b**bb**a**bba*b**a*bbb**aba***babbb*aa****aabb*bbb***a"
+s = "zacabz"
+p = "*a?b*"
+
 print sol.isMatch(s,p)
