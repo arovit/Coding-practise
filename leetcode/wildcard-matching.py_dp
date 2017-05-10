@@ -1,0 +1,44 @@
+#!/usr/bin/python
+class Solution(object):
+    def isMatch(self, s, p):
+        """
+        :type s: str
+        :type p: str
+        :rtype: bool
+        """
+        import re
+        p = re.sub('\*+','*',p)
+        cache = {}
+        total_char_len_in_pattern =  len(p) - p.count('*')
+        total_char_len_in_string = len(s)
+        if total_char_len_in_pattern > total_char_len_in_string:
+            return False
+        return self.isCleanMatch(0, 0, s, p, cache)
+
+    def isCleanMatch(self, i, j, s, p, cache):
+        if i == len(s) and j == len(p):  ## if end reached
+            return True
+        elif i != len(s) and (j == len(p)):
+            return False
+        elif j != len(p) and (i == len(s)):
+            for k in range(j,len(p)):
+                if p[k] != '*':
+                    return False
+            return True
+        elif i in cache and j in cache[i]:
+            return cache[i][j]
+        if p[j] == "?":
+            cache.setdefault(i,{})[j] = self.isCleanMatch(i+1, j+1, s, p, cache)  ## Match anything - go check next
+        elif p[j] == "*":
+            k = i
+            while k <= len(s):
+                if self.isCleanMatch(k, j+1, s, p, cache):
+                    cache.setdefault(i,{})[j]  = True
+                    break
+                else:
+                    k += 1
+            else:
+                cache.setdefault(i,{})[j]  = False
+        else:
+            cache.setdefault(i,{})[j]  =  (p[j] == s[i]) and self.isCleanMatch(i+1, j+1, s, p, cache)
+        return cache[i][j]
