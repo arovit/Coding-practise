@@ -2,7 +2,6 @@
 
 rlist = [11,23,45,67,1,2,3,4,5,6,7,8,9,10]
 
-
 def rotated_search(ilist, min, max, target):
     print ilist[min:max+1]
     if min > max:
