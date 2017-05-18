@@ -16,7 +16,20 @@ def largest_sum_subsequence(a, length):
                     max_sum = smatrix[i][j]  
     print max_sum
 
+
+def largest_sum_subsequence_opt(a, length):
+    sum = 0
+    maxSum = 0
+    for i in range(len(a)):
+        sum += a[i]
+        if sum > maxSum:
+            maxSum = sum
+        if sum < 0:
+            sum = 0
+    print maxSum
+
 a = [2,-8,3,-2,4,-10]
 largest_sum_subsequence(a,len(a))
+largest_sum_subsequence_opt(a,len(a))
 
 
