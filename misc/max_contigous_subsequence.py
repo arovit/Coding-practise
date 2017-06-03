@@ -14,9 +14,6 @@ def find_max_sub_sequence_sum(list_values):
     print max_sum
     print subarray
         
-find_max_sub_sequence_sum(list_values)
-
-
 def find_max_sub_sequence_product(list_values):
     max_ending_here = 1
     min_ending_here = 1
