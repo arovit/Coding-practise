@@ -33,4 +33,13 @@ def whoGivesWhom(expense_list):
         #print index_to_give 
      
     
-whoGivesWhom(expense_list)
+#whoGivesWhom(expense_list)
+
+
+def carPositions(expense_list)
+
+
+
+
+
+
