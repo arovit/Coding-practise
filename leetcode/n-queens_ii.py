@@ -4,17 +4,17 @@ class Solution(object):
     def totalNQueens(self, n):
         self.total_res = 0
         self.dfs([-1 for i in range(n)], 0) 
-        return self.total_res 
+        return self.total_res
 
     def dfs(self, qlist, index):
+        print qlist
         if index == len(qlist):
-            self.total_res += 1    
+            self.total_res += 1
             return 
         for i in range(len(qlist)):
             qlist[index] = i
             if self.validate(qlist, index):
-                self.dfs(qlist, index+1)  
-
+                self.dfs(qlist, index+1)
 
     def validate(self, qlist, index):
         for i in range(index):
@@ -25,3 +25,6 @@ class Solution(object):
 
 sol = Solution()
 print sol.totalNQueens(4)
+
+
+

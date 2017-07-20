@@ -1,41 +1,42 @@
 #!/usr/bin/python
 
-import copy
-
 class Solution(object):
     def solveNQueens(self, n):
         """
         :type n: int
         :rtype: List[List[str]]
         """
-        self.solutions = {}
-        board = [['0' for i in range(n)] for i in range(n)]
-        self.solve_n_queens(n, 0, board)
-      
-    def solve_n_queens(self, n , count, board):
-        if count == n:
-            result = copy.deepcopy(board)
-            key = "%s"%(result) 
-            result = [''.join(x) for x in result]
-            if key not in self.solutions: 
-                self.solutions.update({key:result})
+        self.totalResult = []
+        self.solvedPos = []
+        q_pos = [-1 for i in range(n)]
+        index = 0
+        self.solve(q_pos, index)
+        self.formAnswer(n)
+        return self.solvedPos
+        
+    def formAnswer(self, n):
+        for i in self.totalResult: # element of len - list
+            result = []
+            for k in range(len(i)):       # i is a list
+                ostr = ['.']*n
+                ostr[i[k]] = 'Q'
+                result.append(''.join(ostr))
+            self.solvedPos.append(result)
+            
+    def solve(self, q_pos, index):
+        if index == len(q_pos):
+            self.totalResult.append(copy.deepcopy(q_pos))
             return 
-        for row in range(n):
-            for col in range(n):
-                if board[row][col] == '0':
-                    newboard = copy.deepcopy(board)
-                    self.cancel_positions(row, col, n, newboard)
-       
-    def cancel_positions(self, row, col, n, board): 
-        for i in range(n):
-            board[row][i] = '.'
-            board[i][col] = '.'  
-            if row+i < n and col+i < n : board[row+i][col+i] = '.' 
-            if row+i < n and col-i >= 0: board[row+i][col-i] = '.'
-            if row-i >= 0 and col+i < n: board[row-i][col+i] = '.'
-            if row-i >= 0 and col-i >=0: board[row-i][col-i] = '.'
-            board[row][col] = 'Q'
-
+        for i in range(len(q_pos)):
+            q_pos[index] = i
+            if self.validatePos(q_pos, index):
+                self.solve(q_pos, index+1)
+        
+    def validatePos(self, q_pos, index):
+        for i in range(index):
+            if (q_pos[i] == q_pos[index]) or (index-i == abs(q_pos[i]-q_pos[index])):
+                return False
+        return True
 
 sol = Solution()
 sol.solveNQueens(6)
