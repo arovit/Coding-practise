@@ -28,7 +28,18 @@ def longest_sub_sequence_dp(a, length):
     return max(dpmatrix)
 
 
+
+def practise_longest_increasing_sequence(a):
+    dp_arr = [1 for i in range(len(a))] 
+    for i in range(len(a)):
+        for j in range(i):
+            if a[i] > a[j] and (dp_arr[i] < dp_arr[j] + 1):
+                dp_arr[i] = dp_arr[j] + 1
+    return dp_arr
+     
+
+
 arr = [10, 22, 9, 33, 21, 50, 41, 60]
 n = len(arr) 
-print longest_sub_sequence_dp(arr, n)
-
+#print longest_sub_sequence_dp(arr, n)
+print practise_longest_increasing_sequence(arr)
