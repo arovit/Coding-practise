@@ -1,0 +1,67 @@
+1. Array equal partition  - Backtracking, Array -  done
+2. Function time - Stack = TODO
+3. Lowest Common Ancestor of BST - BST property - done  
+4. Valid Tree - graph loop - form neighbour dict and pop to test reachability and count edges  - done
+5. Connected Components - again form neighbour dict and mark visited - done
+6. lnkd $196 = TODO
+7. Text justify - Round robin allocation of spaces - done
+8. Filter iterator = TODO 
+9. Deep iterator = Use Stack, current index - done
+10. Pagination - simplified text justify = TODO 
+11. String Replacement = done
+12. Bounded Blocking Queue = Concurrency question - use condition variable - wait - notify done
+13. Data struct with O(1) add,remove, random remove - done
+14. Implement hash table = done
+15. BFS traversal - done
+16. implement memmove = c question = TODO 
+17. Serialization and deserialization of binary tree - construct back from list - level wise list - done 
+18. Serialization and deserialization of binary search tree - preorder list- done
+19. Intersection and union of sorted lists = done
+20. Reverse words - quality important - done
+21. Find elem range = TODO
+22. Roman numerals = Integer -> Roman, Roman -> Integer - done
+23. FileSystem = TODO
+24. Permutation - done
+25. Nearest Points = TODO
+26. Intervals Coverage - sort on x first - done
+27. Sideways Tree - done
+28. Maximum length Palindrom - DP - done
+29. Isomorphic words - done
+30. 100++ - Recursion(c) = TODO
+31. Shuffle an array  - done
+32. Implementation of BST - done
+33. triange = TODO
+34. Compact tree = TODO
+35. Common ancestors in tree - done
+36. Find an Influencer - done
+37. Print factors = done
+38. Detect Repeat Sequences in a Chromosome = TODO
+39. Max Stack = TODO
+40. Multi-dimensional Sum = TODO
+41. Ponds and Islands = done
+42. Message burst processor = TODO
+
+2--
+
+43. Best Attack Strategy = using DFS = TODO
+44. K closest values in BST - find closest and compare next largest/smallest - done
+45. K smallest pairs - use BFS + heap as priority queue - done
+46. Color Assignment - Dynamic programming - done
+47. Edit distance - DP - done
+48. Find max colinear points = TODO
+49. Doublets word game = TODO
+50. Num of set partitions = TODO
+51. Detect merged lists = done
+52. Minimum window - two loops with hash - done 
+53. Lock free queue = TODO
+54. Square root - g=(x/g+g)/2 - done
+55. Slicing a Pizza = TODO
+56. Binary Tree Equality = TODO
+57. Reservoir sampling = TODO
+58. Find Palindromes = done
+59. Falling Leaves - recursion to fall - reverse - start from bottom (root) to construct tree - done
+60. Change base and back - done
+
+zaczac -  espresso db
+darius - tools
+
